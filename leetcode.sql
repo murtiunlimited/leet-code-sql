@@ -55,3 +55,11 @@ Bonus.bonus
 FROM Employee
 LEFT JOIN Bonus ON Employee.empID = Bonus.empId
 WHERE bonus < 1000 OR bonus IS null
+
+-- 13
+-- self join
+SELECT TableA.name
+FROM Employee TableA 
+INNER JOIN Employee TableB ON TableA.id=TableB.managerId
+GROUP BY TableA.id
+HAVING COUNT(TableB.id)>=5
