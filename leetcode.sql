@@ -32,3 +32,11 @@ EmployeeUNI.unique_id,
 Employees.name
 FROM Employees
 LEFT JOIN EmployeeUNI ON Employees.id=EmployeeUNI.id
+-- 7
+SELECT
+Product.product_name,
+Sales.year,
+Sales.price
+
+FROM Sales
+LEFT JOIN Product ON Sales.product_id=Product.product_id
