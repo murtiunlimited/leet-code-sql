@@ -40,3 +40,11 @@ Sales.price
 
 FROM Sales
 LEFT JOIN Product ON Sales.product_id=Product.product_id
+-- 9 
+SELECT id
+FROM (
+    SELECT id, temperature, LAG(temperature) OVER (ORDER BY recordDate) AS prev_temperature
+    FROM Weather
+) AS Subquery
+WHERE temperature > prev_temperature;
+
