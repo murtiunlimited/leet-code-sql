@@ -48,3 +48,10 @@ FROM (
 ) AS Subquery
 WHERE temperature > prev_temperature;
 
+-- 11
+SELECT 
+Employee.name,
+Bonus.bonus
+FROM Employee
+LEFT JOIN Bonus ON Employee.empID = Bonus.empId
+WHERE bonus < 1000 OR bonus IS null
