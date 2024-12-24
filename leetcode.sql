@@ -37,9 +37,17 @@ SELECT
 Product.product_name,
 Sales.year,
 Sales.price
-
+    
+-- 8
+SELECT Visits.customer_id,
+COUNT(Visits.visit_id) AS count_no_trans
+FROM Transactions
+RIGHT JOIN Visits ON Transactions.visit_id = Visits.visit_id
+WHERE Transactions.transaction_id IS NULL
+GROUP BY Visits.customer_id
 FROM Sales
 LEFT JOIN Product ON Sales.product_id=Product.product_id
+    
 -- 9 
 SELECT id
 FROM (
@@ -63,3 +71,9 @@ FROM Employee TableA
 INNER JOIN Employee TableB ON TableA.id=TableB.managerId
 GROUP BY TableA.id
 HAVING COUNT(TableB.id)>=5
+
+-- 15
+SELECT * FROM Cinema
+WHERE (id%2=1) AND (description <> 'boring')
+ORDER BY rating DESC 
+
