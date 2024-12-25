@@ -90,3 +90,10 @@ Project.Project_id AS project_id, ROUND((SUM(Employee.experience_years) / COUNT(
 from Project
 LEFT join Employee ON Project.employee_id = Employee.employee_id
 GROUP BY Project_id
+-- 18
+Select
+contest_id,
+ROUND((COUNT(Register.contest_id) / (SELECT count(Users.user_id) FROM Users))*100,2) AS percentage
+FROM Register
+GROUP BY contest_id
+ORDER BY percentage DESC, contest_id;
