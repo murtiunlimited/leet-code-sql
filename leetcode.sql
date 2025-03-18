@@ -235,6 +235,7 @@ GROUP BY
 SELECT *
 FROM Users
 WHERE REGEXP_LIKE(mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$');
-
-
+-- 1527. Patients With a Condition
+SELECT * FROM Patients p
+WHERE p.conditions LIKE "DIAB1%" OR p.conditions LIKE "% DIAB1%"
 
