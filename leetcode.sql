@@ -242,3 +242,22 @@ WHERE p.conditions LIKE "DIAB1%" OR p.conditions LIKE "% DIAB1%"
 SELECT u.user_id, CONCAT(UPPER(LEFT(u.name, 1)), LOWER(SUBSTRING(u.name, 2))) AS name
 FROM Users u
 ORDER BY u.user_id
+-- 1341. Movie Rating
+SELECT results
+FROM (SELECT MovieRating.user_id, COUNT(MovieRating.user_id) AS rating_count, Users.name as results FROM MovieRating
+RIGHT JOIN Users ON MovieRating.user_id = Users.user_id
+GROUP BY user_id
+ORDER BY COUNT(MovieRating.user_id) DESC , name ASC
+Limit 1) AS Subquery
+UNION ALL
+SELECT Title FROM( 
+SELECT MovieRating.movie_id, Movies.title AS Title, AVG(MovieRating.rating) as avg_rating
+FROM MovieRating
+RIGHT JOIN Movies ON MovieRating.movie_id = Movies.movie_id
+WHERE MONTH(created_at) = 2 AND YEAR(MovieRating.created_at) = 2020
+GROUP BY movie_id
+ORDER BY avg_rating DESC, Movies.title ASC  
+LIMIT 1
+) AS sinquery
+
+
