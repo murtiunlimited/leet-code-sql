@@ -238,4 +238,7 @@ WHERE REGEXP_LIKE(mail, '^[a-zA-Z][a-zA-Z0-9._-]*@leetcode[.]com$');
 -- 1527. Patients With a Condition
 SELECT * FROM Patients p
 WHERE p.conditions LIKE "DIAB1%" OR p.conditions LIKE "% DIAB1%"
-
+-- 1667. Fix Names in a Table
+SELECT u.user_id, CONCAT(UPPER(LEFT(u.name, 1)), LOWER(SUBSTRING(u.name, 2))) AS name
+FROM Users u
+ORDER BY u.user_id
